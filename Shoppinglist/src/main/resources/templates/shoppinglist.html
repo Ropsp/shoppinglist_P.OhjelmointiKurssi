@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+<head>
+<title>Shoppinglist</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>What to buy</h1>
+	
+		<div class="col-md-4">
+		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+<table class="table table-striped">
+	<tr>
+	<th>Name</th>
+	<th>Price</th>
+	<th>Category</th>
+	<th sec:authorize="hasAuthority('ADMIN')"> </th>
+	</tr>
+		<tr th:each = "item : ${items}">
+		
+			<td th:text= "${item.name}"></td>
+			<td th:text= "${item.price}"></td>
+			<td th:text= "${item.section.name}"></td>
+			<td><a th:href="@{/delete/{id}(id=${item.id})}" class="btn btn-xs btn-danger">Delete</a></td>
+			
+			<td> <a th:href="@{/edit/{id}(id=${item.id})}" class="btn btn-success">Edit</a></td>
+			</tr>
+			
+</table>
+<a href="/add" class="btn btn-success">Add Item</a>
+
+</body>
+</html>
