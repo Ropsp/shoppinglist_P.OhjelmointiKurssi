@@ -1,11 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
 <head>
 <title>Add Items</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 	<h1>Add Items</h1>
+
 <div>
 	<form th:object="${item}" th:action="@{save}" action="#" method="post">
 		<label for="name">Name </label>
